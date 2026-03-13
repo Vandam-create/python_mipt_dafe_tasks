@@ -1,19 +1,19 @@
-from matplotlib import image
 import numpy as np
+from matplotlib import image
 
 
 def pad_image(image: np.ndarray, pad_size: int) -> np.ndarray:
     H, W = image.shape[:2]
 
-    if(pad_size < 1):
+    if pad_size < 1:
         raise ValueError
-    
+
     if image.ndim == 2:
         zer = np.zeros((H + 2 * pad_size, W + 2 * pad_size), dtype=image.dtype)
-        zer[pad_size:pad_size + H, pad_size:pad_size + W] = image
+        zer[pad_size : pad_size + H, pad_size : pad_size + W] = image
     else:
         zer = np.zeros((H + 2 * pad_size, W + 2 * pad_size, image.shape[2]), dtype=image.dtype)
-        zer[pad_size:pad_size + H, pad_size:pad_size + W, :] = image
+        zer[pad_size : pad_size + H, pad_size : pad_size + W, :] = image
 
     return zer
 
@@ -34,9 +34,10 @@ def blur_image(
     for i in range(kernel_size):
         for j in range(kernel_size):
             res += padded_image[i : i + image.shape[0], j : j + image.shape[1]]
-       
-    res /= kernel_size ** 2
+
+    res /= kernel_size**2
     return res.astype(np.uint8)
+
 
 if __name__ == "__main__":
     import os

@@ -9,13 +9,13 @@ def get_dominant_color_info(
         raise ValueError("threshold must be positive")
 
     img = image.astype(np.int64)
-    uniq, counts = np.unique(img, return_counts = True)
-    delta = uniq[ :, np.newaxis ] - uniq
+    uniq, counts = np.unique(img, return_counts=True)
+    delta = uniq[:, np.newaxis] - uniq
     res = np.abs(delta) < threshold
-    result = np.sum(res * counts, axis = 1)
+    result = np.sum(res * counts, axis=1)
     index = np.argmax(result)
-    
+
     color = uniq[index]
     percentage = result[index] / image.size
-    
+
     return np.uint8(color), float(percentage)
