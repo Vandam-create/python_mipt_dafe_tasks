@@ -10,7 +10,6 @@ def convert_from_sphere(
     azimuth: np.ndarray,
     inclination: np.ndarray,
 ) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
-
     if not (distances.shape == azimuth.shape == inclination.shape):
         raise ShapeMismatchError
 
@@ -26,7 +25,6 @@ def convert_to_sphere(
     ordinates: np.ndarray,
     applicates: np.ndarray,
 ) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
-
     if not (abscissa.shape == ordinates.shape == applicates.shape):
         raise ShapeMismatchError
 
